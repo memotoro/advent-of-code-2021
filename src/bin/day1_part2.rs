@@ -22,14 +22,18 @@ fn main() {
 
 fn calculate_increase_measurements(measurements: &Vec<u32>) -> u32 {
     let mut counter: u32 = 0;
-    let mut index: usize = 1;
+    let mut index: usize = 2;
+    let mut previous: u32 = 0;
 
     while index < measurements.len() {
-        if measurements[index] > measurements[index - 1] {
+        let value = measurements[index] + measurements[index - 1] + measurements[index - 2];
+
+        if index > 2 && value > previous {
             counter += 1;
         }
 
-        index += 1
+        previous = value;
+        index += 1;
     }
 
     counter
