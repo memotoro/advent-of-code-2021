@@ -1,5 +1,18 @@
+use dotenv::dotenv;
+use std::env;
+use std::fs::read_to_string;
+
 fn main() {
-    let measurements: [u32; 10] = [199, 200, 208, 210, 200, 207, 240, 269, 260, 263];
+    dotenv().ok();
+
+    let input_file_path = env::var("DAY1_PART1_INPUT_FILE").expect("error getting env variable");
+
+    let contents = read_to_string(input_file_path).expect("Something went wrong reading the file");
+
+    let measurements = contents
+        .lines()
+        .map(|d| d.parse::<u32>().expect("invalid input"))
+        .collect::<Vec<u32>>();
 
     println!(
         "measurements {}",
@@ -7,7 +20,7 @@ fn main() {
     );
 }
 
-fn calculate_increase_measurements(measurements: &[u32]) -> u32 {
+fn calculate_increase_measurements(measurements: &Vec<u32>) -> u32 {
     let mut counter: u32 = 0;
     let mut index: usize = 1;
 
