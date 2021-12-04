@@ -21,9 +21,9 @@ fn calculate_planned_course(data: Vec<&str>) -> i32 {
 
     for d in data {
         let raw_command = d.split(" ").collect::<Vec<&str>>();
-        let movement = raw_command.get(0).unwrap();
-        let value = raw_command.get(1).unwrap().parse::<i32>().unwrap();
-        match *movement {
+        let movement = raw_command[0];
+        let value = raw_command[1].parse::<i32>().unwrap();
+        match movement {
             "forward" => {
                 horizontal += value;
                 depth += aim * value

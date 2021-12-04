@@ -11,7 +11,7 @@ fn main() {
 
     let measurements = contents
         .lines()
-        .map(|d| d.parse::<u32>().expect("invalid input"))
+        .map(|d| d.parse::<u32>().unwrap())
         .collect::<Vec<u32>>();
 
     println!(
